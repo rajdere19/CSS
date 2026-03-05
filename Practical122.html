@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Controllers</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- External Controller -->
+    <script src="Practical12.js"></script>
+</head>
+
+<body>
+
+<h2>Practical No. 12 – AngularJS Controllers</h2>
+
+
+<!-- 2. NESTED CONTROLLERS -->
+<div ng-controller="ParentCtrl">
+    <h3>Parent Controller</h3>
+    <p>Parent Data: {{ parentData }}</p>
+
+    <div ng-controller="ChildCtrl">
+        <h4>Child Controller</h4>
+        <p>Inherited Data: {{ parentData }}</p>
+        <p>Child Data: {{ childData }}</p>
+    </div>
+</div>
+
+
+</body>
+</html>

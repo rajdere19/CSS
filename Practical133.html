@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Controllers</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- External Controller -->
+    <script src="Practical133.js"></script>
+</head>
+
+<body>
+
+<h2>Practical No. 13 – AngularJS External Controllers</h2>
+
+
+<!-- FILTERS IN CONTROLLER -->
+<div ng-controller="FilterCtrl">
+    <h3> Filters in Controller</h3>
+    <p>Name (Uppercase): {{ name | uppercase }}</p>
+    <p>Name (Lowercase): {{ name | lowercase }}</p>
+</div>
+
+</body>
+</html>

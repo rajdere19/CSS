@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>AngularJS Events</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<h2>AngularJS Event Handling</h2>
+
+<h3>{{ message }}</h3>
+
+<div style="width:200px;height:100px;background:#e0e0e0;padding:10px;"
+ng-mouseover="showMouseOver()"
+ng-mousedown="showMousedown()"
+ng-mouseup="showMouseup()">
+Move mouse here
+</div>
+<br>
+
+<br><br>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.controller("myCtrl", function($scope) {
+$scope.message = "Events will be shown here";
+
+$scope.showMouseOver = function() {
+$scope.message = "Mouse Over!";
+};
+
+$scope.showMousedown = function() {
+$scope.message = "Mouse down!";
+};
+
+$scope.showMouseup = function() {
+$scope.message = "Mouse UP!";
+};
+
+
+});
+</script>
+
+</body>
+</html>

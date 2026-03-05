@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>AngularJS Two Way Data Binding</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<h2>AngularJS Two-Way Data Binding</h2>
+
+<label>Enter your name: </label>
+<input type="text" ng-model="username">
+
+<h3>1. Uppercase Filter</h3>
+<p>{{ username | uppercase }}</p>
+
+<h3>2. Lowercase Filter</h3>
+<p>{{ username | lowercase }}</p>
+
+<h3>3. Sentence (Capitalize) Filter</h3>
+<p>{{ username | capitalize }}</p>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.controller("myCtrl", function($scope) {
+    $scope.username = "anand";
+});
+
+app.filter("capitalize", function() {
+    return function(input) {
+        if (!input) return "";
+        return input.charAt(0).toUpperCase() + input.slice(1);
+    };
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Raj Dere</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<h2>Tow-Way Data Binding</h2>
+
+<form name="myForm" ng-submit="submitForm()">
+    <label>Name:</label>
+    <input type="text" ng-model="username" required>
+    <br><br>
+    <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+</form>
+
+<div ng-show="submitted">
+    <h3>Your name is: {{ submittedData.username }}</h3>
+</div>
+
+<script>
+    var app = angular.module("myApp", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.submitted = false;
+
+        $scope.submitForm = function () {
+            $scope.submittedData = {
+                username: $scope.username
+            };
+            $scope.submitted = true;
+        };
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>AngularJS Filters Example</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<h2>AngularJS Filters Example</h2>
+
+
+<h3>1. Uppercase Filter</h3>
+<p>{{ name | uppercase }}</p>
+
+<h3>2. Lowercase Filter</h3>
+<p>{{ name | lowercase }}</p>
+
+<h3>3. Currency Filter</h3>
+<p>{{ price | currency:"₹" }}</p>
+
+<h3>4. Date Filter</h3>
+<p>{{ today | date:'fullDate' }}</p>
+
+<h3>5. Number Filter</h3>
+<p>{{ 12345.6789 | number:2 }}</p>
+
+<h3>6. Search Filter</h3>
+<input type="text" ng-model="searchName" placeholder="Search student">
+
+<ul>
+<li ng-repeat="stud in students | filter:searchName">
+{{ stud.name }} - {{ stud.marks }}
+</li>
+</ul>
+
+<h3>7. orderBy Filter</h3>
+<ul>
+<li ng-repeat="stud in students | orderBy:'marks'">
+{{ stud.name }} - {{ stud.marks }}
+</li>
+</ul>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.controller("myCtrl", function($scope) {
+$scope.name = "Anand Shinde";
+$scope.price = 1500;
+$scope.today = new Date();
+
+$scope.students = [
+{name: "Rohan", marks: 85},
+{name: "Amit", marks: 72},
+{name: "Sneha", marks: 92}
+];
+});
+</script>
+
+</body>
+</html>
+

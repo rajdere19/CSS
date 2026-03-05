@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Raj Dere</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+<body ng-app="myApp">
+<table ng-controller="myCtrl" style="border:dashed">
+    <th>RollNO</th><th>Name</th><th>Department</th><th>Marks</th>
+<tr ng-repeat="x in records">
+  <td>{{x.Empid}}</td>
+  <td>{{x.Name}}</td>
+  <td>{{x.Post}}</td>
+  <td>{{x.Salary}}</td>  
+</tr>
+</table>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.records = [
+            {
+                "Empid":"101",
+                "Name": "Rohan Nikam",
+                "Post":"Developer",
+                "Salary":"200000"
+            },
+            {
+               "Empid":"102",
+                "Name": "Satayam Patil",
+                "Post":"Designer",
+                "Salary":"150000"  
+            },
+            {
+                "Empid":"103",
+                "Name": "Atharva Pawar",
+                "Post":"Tester",
+                "Salary":"50000"
+            },
+            {
+               "Empid":"104",
+               "Name": "Shivam Dere",
+                "Post":"HR",
+                "Salary":"50000" 
+            },
+            {
+               "Empid":"105",
+               "Name": "Shivam Pol",
+                "Post":"Accountant",
+                "Salary":"60000" 
+            }
+        ]
+    });
+</script>
+
+</body>
+
+</html>

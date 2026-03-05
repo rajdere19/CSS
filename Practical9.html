@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>AngularJS Events</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<h2>AngularJS Event Handling</h2>
+
+<h3>{{ message }}</h3>
+
+<div style="width:200px;height:100px;background:#e0e0e0;padding:10px;"
+ng-mouseover="showMouseOver()"
+ng-mouseleave="showMouseLeave()">
+Move mouse here
+</div>
+<br>
+
+<button ng-click="showClick()">Click Me</button>
+<button ng-dblclick="showDoubleClick()">Double Click Me</button>
+<br><br>
+
+<input type="text" placeholder="Type something..."
+ng-keydown="keyPressed($event)">
+
+<script>
+var app = angular.module("myApp", []);
+
+app.controller("myCtrl", function($scope) {
+$scope.message = "Events will be shown here";
+
+$scope.showClick = function() {
+$scope.message = "Button Clicked!";
+};
+
+$scope.showDoubleClick = function() {
+$scope.message = "Button Double Clicked!";
+};
+
+$scope.showMouseOver = function() {
+$scope.message = "Mouse Over!";
+};
+
+$scope.showMouseLeave = function() {
+$scope.message = "Mouse Left the box!";
+};
+
+$scope.keyPressed = function(event) {
+$scope.message = "Key Pressed: " + event.key;
+};
+});
+</script>
+
+</body>
+</html>

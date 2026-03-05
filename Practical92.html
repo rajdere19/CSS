@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="eventApp">
+<head>
+   <title>Raj Dere</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>;
+</head>
+<body ng-controller="eventCtrl" style="text-align:center;">
+
+  <h2>AngularJS Events Practical</h2>
+
+   <h3>Que. 2</h3>
+   <!--Keyboard Event -->
+   <input type="text" placeholder="Type something..."
+   ng-keypress="count=count+1" />
+   <p>Key Press Count: {{ count }}</p>
+  <script>
+   var app = angular.module("eventApp", []);
+   app.controller("eventCtrl", function($scope) {
+   $scope.count = 0;
+   });
+  </script>
+</body>
+</html>

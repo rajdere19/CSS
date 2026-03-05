@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Raj Dere</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+<body ng-app="myApp">
+<table ng-controller="myCtrl" style="border:dotted">
+    <th>RollNO</th><th>Name</th><th>Department</th><th>Marks</th>
+<tr ng-repeat="x in records">
+  <td>{{x.RollNO}}</td>
+  <td>{{x.Name}}</td>
+  <td>{{x.Department}}</td>
+  <td>{{x.Marks}}</td>  
+</tr>
+</table>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.records = [
+            {
+                "RollNO":"101",
+                "Name": "Rohan",
+                "Department":"CE",
+                "Marks":"99%"
+            },
+            {
+               "RollNO":"102",
+                "Name": "Satayam",
+                "Department":"CO",
+                "Marks":"97%"  
+            },
+            {
+                "RollNO":"103",
+                "Name": "Atharva",
+                "Department":"EE",
+                "Marks":"95%"
+            },
+            {
+               "RollNO":"104",
+               "Name": "Shivam",
+                "Department":"IT",
+                "Marks":"93%" 
+            },
+            {
+                "RollNO":"105",
+                "Name": "Raj",
+                "Department":"CO",
+                "Marks":"99%"
+            },
+            {
+               "RollNO":"106",
+                "Name": "Ram",
+                "Department":"CO",
+                "Marks":"97%"  
+            },
+            {
+                "RollNO":"107",
+                "Name": "Sham",
+                "Department":"EE",
+                "Marks":"95%"
+            },
+            {
+               "RollNO":"108",
+               "Name": "Abhay",
+                "Department":"IT",
+                "Marks":"93%" 
+            },
+            {
+                "RollNO":"109",
+                "Name": "Pranav",
+                "Department":"CE",
+                "Marks":"99%"
+            },
+            {
+               "RollNO":"110",
+                "Name": "Princ",
+                "Department":"CO",
+                "Marks":"97%"  
+            }
+        ]
+    });
+</script>
+
+</body>
+
+</html>

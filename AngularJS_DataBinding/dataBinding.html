@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>AngularJS Data Binding</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<h2>AngularJS One-Way Data Binding</h2>
+
+<p>Message: {{ message }}</p>
+<p>Name: {{ name }}</p>
+<p>Course: {{ course }}</p>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.controller("myCtrl", function($scope) {
+$scope.message = "Welcome to AngularJS Data Binding!";
+$scope.name = "Anand";
+$scope.course = "Client Side Scripting (CSS)";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Raj Dere</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+
+<h2> Uppercase filter in AngularJS </h2>
+
+<label>Enter your first name: </label>
+<input type="text" ng-model="usernamefirst">
+<label>Enter your last name: </label>
+<input type="text" ng-model="usernamelast">
+
+<h3>Uppercase Filter</h3>
+<p>{{ usernamefirst | uppercase }} {{usernamelast | uppercase }}</p>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.controller("myCtrl", function($scope) {
+    $scope.username = "raj";
+    $scope.username = "Dere";
+
+});
+
+</script>
+
+</body>
+</html>
