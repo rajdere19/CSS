@@ -1,0 +1,39 @@
+Practical No.9: Implement program to train an SVM model on given dataset.
+
+
+   # Import required libraries
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+# Load dataset (Iris dataset)
+data = load_iris()
+X = data.data
+y = data.target
+
+# Split the dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Define different kernel functions
+kernels = ['linear', 'poly', 'rbf']
+
+print("SVM Classification Results with Different Kernels\n")
+
+# Train and evaluate model for each kernel
+for kernel in kernels:
+    svm_model = SVC(kernel=kernel)
+    svm_model.fit(X_train, y_train)
+
+    # Prediction
+    y_pred = svm_model.predict(X_test)
+
+    # Accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Kernel: {kernel}")
+    print("Accuracy:", accuracy)
+    print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+    print("-" * 45)

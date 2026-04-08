@@ -1,0 +1,43 @@
+Practical No. 11:  *Implement program to use PCA technique to reduce the number of features while retaining important information.
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+# Load Iris Dataset
+from sklearn.datasets import load_iris
+data = load_iris()
+X = pd.DataFrame(data.data, columns=data.feature_names)
+y = data.target
+# Standardize the Data
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+# Apply PCA (Reduce to 2 Dimensions)
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+# Visualize Reduced Data
+plt.figure(figsize=(8, 6))
+for target, color in zip([0, 1, 2], ['red', 'green', 'blue']):
+    plt.scatter(X_pca[y == target, 0],
+                X_pca[y == target, 1],
+                c=color,
+                label=data.target_names[target])
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('PCA on Iris Dataset')
+plt.legend()
+plt.show()
+# Split Data for Classification
+X_train, X_test, y_train, y_test = train_test_split(X_pca, y, test_size=0.3, random_state=42)
+
+# Apply KNN Classifier
+model = KNeighborsClassifier(n_neighbors=3)
+model.fit(X_train, y_train)
+# Predictions
+y_pred = model.predict(X_test)
+# Accuracy
+print("Accuracy after PCA:", accuracy_score(y_test, y_pred))

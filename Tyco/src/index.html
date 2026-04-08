@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <title>Angular</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+        </script>
+    </head>
+    <body ng-controller="myCtrl">
+        <h2>Registration</h2>
+        <form name="myForm">
+
+            <label>Name:</label>
+            <input type="text" ng-model="emp.name">
+            <br><br>
+
+            <label>Email:</label>
+            <input type="email" ng-model="emp.email">
+            <br><br>
+
+            <label>Age:</label>
+            <input type="number" ng-model="emp.age">
+            <br><br>
+
+            <label>Gender:</label>
+            <Select ng-model="emp.gender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </Select>
+
+            <button ng-click="Validate()">Submit</button>
+
+            <p style="color: chartreuse;">{{message}}</p>
+
+        </form>
+
+        <script>
+          
+          var app = angular.module("myApp",[]);
+
+          app.controller("myCtrl",function($scope)
+          {
+            $scope.emp={};
+            $scope.Validate=function()
+            {
+                if(!$scope.emp.name ||!$scope.emp.email ||!$scope.emp.age ||!$scope.emp.gender )
+            {
+                $scope.message="All Fields Require to fill";
+            }
+            else
+            {
+                $scope.message="Form Submited";
+
+            }
+            };
+          });
+
+        </script>
+    </body>
+</html>

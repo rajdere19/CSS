@@ -1,0 +1,29 @@
+Practical No. 12:  *Implement program to use machine-learning model on given dataset.
+
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+# Step 1: Create a simple medical dataset
+data = {
+    'Fever': [1, 1, 1, 0, 0, 0, 1, 0],
+    'Cough': [1, 1, 0, 1, 0, 0, 1, 0],
+    'Fatigue': [1, 0, 1, 0, 0, 1, 1, 0],
+    'Headache': [1, 1, 1, 0, 0, 0, 1, 0],
+    'Diagnosis': ['Flu', 'Flu', 'Flu', 'Cold', 'Healthy', 'Healthy', 'Flu', 'Healthy']
+}
+df = pd.DataFrame(data)
+# Features and target
+X = df[['Fever', 'Cough', 'Fatigue', 'Headache']]
+y = df['Diagnosis']
+# Step 2: Train Decision Tree
+model = DecisionTreeClassifier(criterion="entropy", random_state=42)
+model.fit(X, y)
+# Step 3: Simple decision-support prediction
+print("Enter patient symptoms (1 = Yes, 0 = No):")
+fever = int(input("Fever: "))
+cough = int(input("Cough: "))
+fatigue = int(input("Fatigue: "))
+headache = int(input("Headache: "))
+patient_data = [[fever, cough, fatigue, headache]]
+prediction = model.predict(patient_data)
+print("\nDecision-Support Diagnosis:")
+print("Predicted Condition:", prediction[0])

@@ -1,0 +1,33 @@
+Practical No. 2:  Implement program for Data Preprocessing Techniques
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import LabelEncoder, MinMaxScaler, StandardScaler
+
+# Create a sample dataset
+data = {
+    'Age': [25, 30, 35, 40],
+    'Salary': [50000, 60000, 70000, 80000],
+    'Department': ['HR', 'IT', 'Finance', 'IT']
+}
+df = pd.DataFrame(data)
+print("Original Data:\n", df)
+
+# Encoding categorical data
+label_encoder = LabelEncoder()
+df['Department'] = label_encoder.fit_transform(df['Department'])
+
+print("\nAfter Encoding Categorical Data:\n", df)
+
+# Feature Scaling - Min-Max Normalization
+min_max_scaler = MinMaxScaler()
+df[['Age', 'Salary']] = min_max_scaler.fit_transform(df[['Age', 'Salary']])
+
+print("\nAfter Min-Max Scaling:\n", df)
+
+# Feature Scaling - Standardization
+standard_scaler = StandardScaler()
+df[['Age', 'Salary']] = standard_scaler.fit_transform(df[['Age', 'Salary']])
+
+print("\nAfter Standardization:\n", df)
+

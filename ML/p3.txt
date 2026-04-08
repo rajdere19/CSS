@@ -1,0 +1,51 @@
+Practical No. 3: Implement program to read dataset (Text, CSV, JSON , XML)
+
+import csv
+import json
+import xml.etree.ElementTree as ET
+def read_text_file(filepath):
+    try:
+        with open(filepath, 'r') as file:
+            print("\n---- Text File Content ---")
+            print(file.read())
+    except FileNotFoundError:
+            print("Text file not found.")
+def read_csv_file(filepath):
+    try:
+        with open(filepath, 'r' , newline = '') as file:
+            reader = csv.reader(file)
+            print("\n -- CSV File Content --")
+            for row in reader:
+                print(row)
+    except FileNotFoundError:
+        print("CSV file not found.")
+
+def read_json_file(filepath):
+    try:
+        with open(filepath,'r') as file:
+            data = json.load(file)
+            print("\n -- JSON File Content --")
+            print(data)
+    except FileNotFoundError:
+        print("JSON file not found.")
+
+def read_xml_file(filepath):
+    try:
+        tree = ET.parse(filepath)
+        root = tree.getroot()
+        print("\n -- XML File Content --")
+        for child in root:
+            for elem in child:
+                print(f"{elem.tag}:{elem.text}")
+            print()
+    except FileNotFoundError:
+        print("XML file not found.")
+
+text_path = r"C:\Users\ADMIN\Desktop\ML\Practical3files\sample.txt"
+csv_path = r"C:\Users\ADMIN\Desktop\ML\Practical3files\sample.csv"
+json_path = r"C:\Users\ADMIN\Desktop\ML\Practical3files\correct_sample.json"
+xml_path =r"C:\Users\ADMIN\Desktop\ML\Practical3files\sample.xml"
+read_text_file(text_path)
+read_csv_file(csv_path)
+read_json_file(json_path)
+read_xml_file(xml_path)

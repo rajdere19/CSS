@@ -1,0 +1,186 @@
+Practical No.5 : Implement the regression model by using the suitable dataset.
+
+
+2.	 Write a program to implement the Linear Regression by using the suitable dataset.
+
+Code:
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# 1. Generate a synthetic dataset
+np.random.seed(0)  # for reproducibility
+
+X = 2 * np.random.rand(100, 1)          # 100 data points, 1 feature
+y = 4 + 3 * X + np.random.randn(100, 1) # y = 4 + 3x + noise
+
+# 2. Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 3. Create and train the Linear Regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# 4. Make predictions on the test set
+y_pred = model.predict(X_test)
+
+# 5. Evaluate the model
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Model Intercept: {model.intercept_[0]:.2f}")
+print(f"Model Coefficient (Slope): {model.coef_[0][0]:.2f}")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"R-squared (R2) Score: {r2:.2f}")
+
+# 6. Plot the results
+plt.figure(figsize=(10, 6))
+plt.scatter(X_test, y_test, color='blue', label='Actual Data')
+plt.plot(X_test, y_pred, color='red', linewidth=2, label='Regression Line')
+plt.title('Simple Linear Regression')
+plt.xlabel('X (Independent Variable)')
+plt.ylabel('y (Dependent Variable)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+Output :
+Model Intercept: 4.21
+Model Coefficient (Slope): 2.99
+Mean Squared Error (MSE): 0.92
+R-squared (R2) Score: 0.65
+
+ 
+
+
+
+
+
+3.	Write a program to implement the logistic regression by using the suitable dataset.
+
+Code:
+# Logistic Regression using Iris Dataset
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+
+# Step 1: Load Iris dataset
+iris = load_iris()
+
+# Step 2: Separate features and target
+X = iris.data
+y = iris.target
+
+# Step 3: Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42)
+# Step 4: Create Logistic Regression model
+model = LogisticRegression(max_iter=200)
+
+# Step 5: Train the model
+model.fit(X_train, y_train)
+
+# Step 6: Predict the test data
+y_pred = model.predict(X_test)
+
+# Step 7: Evaluate the model
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+
+# Step 8: Simple visualization (using first two features)
+plt.scatter(X_test[:, 0], X_test[:, 1], c=y_pred)
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.title("Logistic Regression Classification (Iris Dataset)")
+plt.show()
+
+Output:
+Accuracy: 1.0
+Confusion Matrix:
+ [[10  0  0]
+ [ 0  9  0]
+ [ 0  0 11]]
+
+Classification Report:
+               precision   recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       1.00      1.00      1.00         9
+           2       1.00      1.00      1.00        11
+
+    accuracy                                   1.00        30
+   macro avg        1.00      1.00      1.00        30
+weighted avg       1.00      1.00      1.00        30
+
+ 
+
+
+
+
+
+
+4.	Write a program to implement the Ridge Regression by using the suitable dataset.
+
+Code:
+# Ridge Regression using Boston Housing Dataset
+
+# Import required libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import fetch_openml
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import Ridge
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Step 1: Load the dataset
+dataset = fetch_openml(name="boston", version=1, as_frame=True)
+
+# Step 2: Separate features and target
+# Convert to float (IMPORTANT to avoid errors)
+X = dataset.data.astype(float)
+y = dataset.target.astype(float)
+
+
+# Step 3: Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42)
+# Step 4: Create Ridge Regression model
+# alpha controls regularization strength
+model = Ridge(alpha=1.0)
+
+# Step 5: Train the model
+model.fit(X_train, y_train)
+
+# Step 6: Predict values
+y_pred = model.predict(X_test)
+
+# Step 7: Evaluate the model
+print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
+print("R2 Score:", r2_score(y_test, y_pred))
+
+# Step 8: Plot Actual vs Predicted values
+plt.figure()
+plt.scatter(y_test, y_pred)
+plt.xlabel("Actual House Prices")
+plt.ylabel("Predicted House Prices")
+plt.title("Ridge Regression: Actual vs Predicted House Prices")
+plt.show()
+
+Output:
+Mean Squared Error: 24.477191227708644
+R2 Score: 0.6662221670168523
+

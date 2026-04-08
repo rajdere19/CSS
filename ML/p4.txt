@@ -1,0 +1,87 @@
+Practical no 4 : Implement the classification algorithms on previously prepared dataset
+
+1.	Write a program to implement the Decision Tree mode.
+
+Code:
+#Decision Tree Classification Program
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+#Load dataset
+data = load_iris()
+
+X = data.data
+y = data.target
+
+#Split dataset into training and testing seta
+X_train, X_test, y_train, y_test = train_test_split(
+X, y, test_size=0.2, random_state=42
+)
+
+#Create Decision Tree model
+dt_model = DecisionTreeClassifier(criterion="gini")
+dt_model.fit(X_train, y_train)
+
+#Predict
+y_pred_dt = dt_model.predict(X_test)
+
+#Evaluation
+print("Decision Tree Performance:")
+print("Accuracy:", accuracy_score(y_test, y_pred_dt))
+print("Precision:", precision_score(y_test, y_pred_dt, average="macro"))
+print("Recall:", recall_score(y_test, y_pred_dt, average="macro"))
+print("F1 Score:", f1_score(y_test, y_pred_dt, average="macro"))
+
+Output:
+Decision Tree Performance:
+Accuracy: 1.0
+Precision: 1.0
+Recall: 1.0
+F1 Score: 1.0
+
+
+2.	Write a program to implement the K-Nearest Neighbor model.
+
+Code:
+
+#k-Nearest Neighbor (0) Classification Program
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score,f1_score 
+
+#Load dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+#Split dataset into training and testing anta
+X_train, X_test, y_train, y_test = train_test_split (
+    X, y, test_size=0.2, random_state=42
+)
+#Create KNN model
+knn_model = KNeighborsClassifier(n_neighbors=5)
+
+#Train model
+knn_model.fit(X_train, y_train)
+
+#Predict
+y_pred = knn_model.predict(X_test)
+
+#Evaluate performance
+print("X-Nearest Neighbor Performance:")
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Precision:", precision_score(y_test, y_pred, average="macro"))
+print("Recalls", recall_score(y_test,y_pred, average="macro"))
+print("Fl Score:", f1_score(y_test,y_pred, average="macro"))
+
+Output:
+
+X-Nearest Neighbor Performance:
+Accuracy: 1.0
+Precision: 1.0
+Recalls 1.0
+Fl Score: 1.0
+
